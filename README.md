@@ -172,6 +172,12 @@ Contributions, issues, and feature requests are welcome!
 - **Author**: khaizinam
 - **Demo**: [https://beatup.khaizinam.io.vn](https://beatup.khaizinam.io.vn)
 
+## ❤️ Support Me
+
+If you enjoy BeatUp and would like to support its development, you can make a donation here:
+
+![QR Code for Donation](public/image/qr_code.png)
+
 ---
 
 Made with ❤️ by khaizinam
