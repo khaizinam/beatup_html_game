@@ -6,7 +6,8 @@ export default class AudioSystem {
             perfect: new Audio('public/audio/perfect.wav'),
             great: new Audio('public/audio/great.wav'),
             bad: new Audio('public/audio/bad.wav'),
-            miss: new Audio('public/audio/miss.wav')
+            miss: new Audio('public/audio/miss.wav'),
+            start: new Audio('public/audio/game-start.mp3')
         };
         this.music = null;
 
@@ -19,6 +20,24 @@ export default class AudioSystem {
         this.music = new Audio(path);
         this.music.volume = 0.5;
         this.music.play().catch(e => console.warn("Music load failed or autoplay blocked", e));
+    }
+
+    playBGM() {
+        if (!this.bgm) {
+            this.bgm = new Audio('public/audio/background-loop.mp3');
+            this.bgm.loop = true;
+            this.bgm.volume = 0.3;
+        }
+        if (this.bgm.paused) {
+            this.bgm.play().catch(e => console.log("BGM Auto-play blocked"));
+        }
+    }
+
+    stopBGM() {
+        if (this.bgm) {
+            this.bgm.pause();
+            this.bgm.currentTime = 0;
+        }
     }
 
     toggleMusic(play) {
@@ -35,6 +54,7 @@ export default class AudioSystem {
     }
 
     playKey() { this.play(this.sounds.key); }
+    playStart() { this.play(this.sounds.start); }
     playJudgement(type) {
         const key = type.toLowerCase();
         if (this.sounds[key]) this.play(this.sounds[key]);

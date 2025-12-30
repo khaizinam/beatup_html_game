@@ -16,15 +16,14 @@ export default class UISystem {
         const timeLeft = Math.max(0, this.game.songData.duration - this.game.elapsedTime);
         const mins = Math.floor(timeLeft / 60);
         const secs = Math.floor(timeLeft % 60).toString().padStart(2, '0');
-        ctx.font = "20px monospace"; ctx.fillStyle = "#fff"; ctx.textAlign = "right";
-        ctx.fillText(`TIME: ${mins}:${secs}`, 780, 50);
+        ctx.font = "20px monospace"; ctx.fillStyle = "#fff"; ctx.textAlign = "center";
+        ctx.fillText(`TIME: ${mins}:${secs}`, 400, 30);
 
         // Draw Phase Label
-        // Phase logic is in Game class, but we can access via game.currentPhaseIdx?
-        // Actually in game.js logic, checkPhase updates things but where is `currentPhaseIdx`?
-        // Ah, I need to make sure Game class exports or properties are accessible.
-        // Let's assume Game passes current phase label or handles it. 
-        // For now, let's look at how original game.js did it.
-        // Original used PHASES[this.game.currentPhaseIdx], so we need that.
+        const currentSeg = this.game.songData.segments.find(s => this.game.elapsedTime >= s.start && this.game.elapsedTime < s.end);
+        if (currentSeg) {
+            ctx.font = "bold 16px Arial"; ctx.fillStyle = "#FFD700"; ctx.textAlign = "center";
+            ctx.fillText(currentSeg.label.toUpperCase(), 400, 55);
+        }
     }
 }

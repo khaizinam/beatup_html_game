@@ -27,6 +27,7 @@ export default class NoteSystem {
 
     handleInput(code) {
         if (this.sequence.length === 0) return;
+        if (this.inputIndex >= this.sequence.length) return; // Guard: Sequence complete
         const currentNote = this.sequence[this.inputIndex];
         if (code === currentNote.key) {
             currentNote.state = 'DONE';

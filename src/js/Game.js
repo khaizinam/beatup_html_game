@@ -42,6 +42,7 @@ export default class BeatUpGame {
 
         // Init
         this.initMenu();
+        this.audioSystem.playBGM(); // Play on load
 
         // Loop
         this.loop = this.loop.bind(this);
@@ -92,12 +93,24 @@ export default class BeatUpGame {
 
         // Reset Systems
         this.beatSystem.updateSpeed(this.bpm);
+        // Reset Systems
+        this.beatSystem.updateSpeed(this.bpm);
         this.noteSystem.reset();
-        this.audioSystem.playMusic(this.songData.file);
+        this.audioSystem.stopBGM();
 
-        // Start
-        this.state = 'PLAYING';
+        // Start Sequence
+        this.state = 'STARTING';
+        this.audioSystem.playStart();
         this.showScreen('screen-game');
+
+        // Draw "Ready" or similar immediately? The loop will handle it.
+        setTimeout(() => {
+            if (this.state === 'STARTING') { // Check in case they quit during start
+                this.audioSystem.playMusic(this.songData.file);
+                this.state = 'PLAYING';
+                this.elapsedTime = 0; // Ensure 0 start
+            }
+        }, 2000);
     }
 
     togglePause() {
@@ -119,6 +132,7 @@ export default class BeatUpGame {
     quitToMenu() {
         this.state = 'MENU';
         this.audioSystem.stopMusic();
+        this.audioSystem.playBGM();
         this.showScreen('screen-menu');
         document.getElementById('modal-pause').classList.add('hidden');
     }
@@ -126,6 +140,7 @@ export default class BeatUpGame {
     endGame() {
         this.state = 'GAMEOVER';
         this.audioSystem.stopMusic();
+        this.audioSystem.playBGM();
         this.showScreen('screen-result');
 
         // Fill Result
@@ -165,6 +180,14 @@ export default class BeatUpGame {
             this.draw();
         } else if (this.state === 'PAUSED') {
             this.draw(); // Keep drawing last frame
+        } else if (this.state === 'STARTING') {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.drawBackground();
+            // Draw Ready Text
+            this.ctx.fillStyle = "white";
+            this.ctx.font = "bold 40px Arial";
+            this.ctx.textAlign = "center";
+            this.ctx.fillText("READY...", 400, 300);
         }
 
         requestAnimationFrame(this.loop);
