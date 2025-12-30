@@ -18,7 +18,7 @@ export const PHASES = [
 ];
 
 export const DIFFICULTY_CONFIG = {
-    'EASY': { noteCountBonus: -1, speedMultiplier: 0.8 },
+    'EASY': { noteCountBonus: -1, speedMultiplier: 0.6 },
     'NORMAL': { noteCountBonus: 0, speedMultiplier: 1.0 },
     'HARD': { noteCountBonus: 1, speedMultiplier: 1.2 },
     'EXPERT': { noteCountBonus: 2, speedMultiplier: 1.5 }

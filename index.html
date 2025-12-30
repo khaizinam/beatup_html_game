@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeatUp - Audition Style</title>
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="icon" href="/public/image/logo.png">
+    <meta name="title" content="BeatUp - Audition Style">
+    <meta name="description" content="BeatUp - Audition game html5.">
+    <meta name="keywords" content="BeatUp, Audition Style, BeatUp Game">
+    <meta name="author" content="khaizinam">
+    <meta property="og:image" content="/public/image/menu-background.jpg">
+    <meta property="og:title" content="BeatUp - Audition Style">
+    <meta property="og:description" content="BeatUp - Audition game html5.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://beatup.khaizinam.io.vn">
+    <meta name="robots" content="index, follow">
 </head>
 
 <body>
     <div id="game-container">
         <!-- MENU SCREEN -->
         <div id="screen-menu" class="screen active">
-            <h1>BeatUp Web</h1>
             <div class="menu-form">
                 <div class="form-group">
                     <label>Mode:</label>
@@ -27,6 +37,7 @@
                         <option value="EASY">Easy</option>
                         <option value="NORMAL" selected>Normal</option>
                         <option value="HARD">Hard</option>
+                        <option value="EXPERT">Expert</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -52,6 +63,7 @@
                 <div id="combo-board">Combo: <span id="combo">0</span></div>
                 <div id="level-board">Level: <span id="level">1</span></div>
                 <div id="judgement">Ready?</div>
+                <div id="controls-hint">ESC: Menu | ↑↓←→: Play | SPACE: Complete</div>
             </div>
 
             <!-- PAUSE MODAL -->
@@ -79,7 +91,7 @@
             </div>
         </div>
     </div>
-    <script src="public/js/app.js"></script>
+    <script src="/public/js/app.js"></script>
 </body>
 
 </html>

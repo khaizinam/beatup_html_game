@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "mix",
+    "watch": "mix watch",
+    "dev": "mix",
     "build": "mix --production"
   },
   "keywords": [],

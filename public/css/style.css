@@ -37,7 +37,10 @@ body {
 }
 
 #screen-menu {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background-image: url('../image/menu-backgroud.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #screen-result {
@@ -61,10 +64,10 @@ canvas {
 
 /* UI Elements */
 .menu-form {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.5);
     padding: 30px;
     border-radius: 10px;
-    border: 1px solid #444;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-group {
@@ -149,6 +152,22 @@ button:hover {
     font-weight: bold;
     color: #fff;
     text-shadow: 0 0 10px #fff;
+}
+
+#controls-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff, 0 0 15px rgba(0, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    white-space: nowrap;
 }
 
 /* Modal */

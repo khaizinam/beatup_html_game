@@ -91,12 +91,24 @@ export default class BeatUpGame {
         this.currentPhaseIdx = 0;
         this.bpm = this.songData.segments[0].bpm;
 
-        // Reset Systems
-        this.beatSystem.updateSpeed(this.bpm);
-        // Reset Systems
-        this.beatSystem.updateSpeed(this.bpm);
+        // Apply Speed Multiplier from Difficulty (Visual Only)
+        const diffConfig = DIFFICULTY_CONFIG[this.config.diff];
+        const speedMult = diffConfig.speedMultiplier || 1.0;
+
+        // Store base BPM (from song data) - this tracks the SONG's BPM
+        this.bpm = this.songData.segments[0].bpm;
+
+        // Update BeatSystem with SCALED BPM for visual speed
+        // Higher speedMult = faster visual bar, but music plays at normal 1.0x
+        this.beatSystem.updateSpeed(this.bpm * speedMult);
+
         this.noteSystem.reset();
         this.audioSystem.stopBGM();
+
+        // Reset UI elements
+        this.uiSystem.updateUI(); // Update score/combo/level displays
+        document.getElementById('judgement').innerText = 'Ready?'; // Clear old judgement text
+        document.getElementById('judgement').style.color = '#fff';
 
         // Start Sequence
         this.state = 'STARTING';
@@ -150,9 +162,9 @@ export default class BeatUpGame {
 
         // Rank Logic
         let rank = 'F';
-        if (this.score > 50000) rank = 'S';
-        else if (this.score > 30000) rank = 'A';
-        else if (this.score > 10000) rank = 'B';
+        if (this.score > 5000) rank = 'S';
+        else if (this.score > 3000) rank = 'A';
+        else if (this.score > 1000) rank = 'B';
         document.getElementById('res-rank').innerText = rank;
     }
 
@@ -173,7 +185,7 @@ export default class BeatUpGame {
             if (Math.abs(audioTime - this.elapsedTime) > 0.1) {
                 this.elapsedTime = audioTime;
             } else {
-                this.elapsedTime += dt / 1000;
+                this.elapsedTime += dt / 1000; // Normal time - music plays at 1.0x
             }
 
             this.update(dt);
@@ -202,10 +214,17 @@ export default class BeatUpGame {
 
         // Check Phase/Segment
         const seg = this.songData.segments.find(s => this.elapsedTime >= s.start && this.elapsedTime < s.end);
-        if (seg && seg.bpm !== this.bpm) {
-            this.bpm = seg.bpm;
-            this.beatSystem.updateSpeed(this.bpm);
-            this.triggerJudgement(seg.label, "#FFD700");
+        if (seg) {
+            const diffConfig = DIFFICULTY_CONFIG[this.config.diff];
+            const speedMult = diffConfig.speedMultiplier || 1.0;
+            const targetBpm = seg.bpm * speedMult;
+
+            if (targetBpm !== this.bpm) {
+                this.bpm = targetBpm;
+                this.level = seg.mode;
+                this.beatSystem.updateSpeed(this.bpm);
+                this.triggerJudgement(seg.label, "#FFD700");
+            }
         }
 
         if (this.config.autoPlay) {
@@ -253,13 +272,19 @@ export default class BeatUpGame {
             if (this.combo > this.maxCombo) this.maxCombo = this.combo;
 
             let pts = 0;
-            if (text === 'PERFECT') pts = 1000;
-            if (text === 'GREAT') pts = 500;
-            if (text === 'COOL') pts = 100;
+            if (text === 'PERFECT') pts = 100;
+            if (text === 'GREAT') pts = 50;
+            if (text === 'COOL') pts = 10;
 
-            // Diff Mult
-            const mult = DIFFICULTY_CONFIG[this.config.diff].noteCountBonus + 1;
-            this.score += pts * (1 + Math.floor(this.combo / 10)) * mult;
+            // Difficulty Score Multiplier
+            // EASY: 0.8x, NORMAL: 1.0x, HARD: 1.2x, EXPERT: 1.5x
+            let diffMult = 1.0;
+            if (this.config.diff === 'EASY') diffMult = 0.8;
+            else if (this.config.diff === 'NORMAL') diffMult = 1.0;
+            else if (this.config.diff === 'HARD') diffMult = 1.2;
+            else if (this.config.diff === 'EXPERT') diffMult = 1.5;
+
+            this.score += Math.floor(pts * (1 + Math.floor(this.combo / 10)) * diffMult);
         }
         this.uiSystem.updateUI();
     }
