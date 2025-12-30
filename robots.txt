@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://beatup.khaizinam.io.vn/sitemap.xml

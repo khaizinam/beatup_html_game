@@ -1,218 +1,124 @@
+/* General Styles for Pages (Not Game) */
 body {
     margin: 0;
     padding: 0;
     background-color: #111;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
 }
 
 #game-container {
     position: relative;
     width: 800px;
-    height: 600px;
+    margin: 2rem auto;
+    min-height: 100vh;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-    border: 2px solid #333;
+    border-left: 2px solid #333;
+    border-right: 2px solid #333;
     background: #000;
 }
 
-.screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.screen.active {
-    display: flex;
-}
-
-#screen-menu {
-    background-image: url('../image/menu-backgroud.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-#screen-result {
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 20;
-}
-
-canvas {
-    display: block;
-    background: radial-gradient(circle at center, #222 0%, #000 100%);
-}
-
-#ui-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-/* UI Elements */
-.menu-form {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 30px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #aaa;
-}
-
-select {
-    width: 200px;
-    padding: 8px;
-    background: #222;
+/* About Page */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
     color: #fff;
-    border: 1px solid #555;
-    border-radius: 4px;
 }
 
-button {
-    cursor: pointer;
+.about-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-header h1 {
+    font-size: 48px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.about-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    line-height: 1.8;
+}
+
+.about-content h2 {
+    color: #00ffff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.about-content h2:first-child {
+    margin-top: 0;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.about-content a {
+    color: #00ffff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.about-content a:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+.contact-info {
+    background: rgba(0, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-left: 4px solid #00ffff;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
     background: #00ccff;
     color: #000;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
     font-weight: bold;
-    border-radius: 4px;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
-button:hover {
+.back-button:hover {
     background: #00ffff;
     transform: scale(1.05);
 }
 
-.btn-primary {
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* HUD */
-#score-board,
-#combo-board,
-#level-board {
-    position: absolute;
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 0 0 5px #000;
-}
-
-#score-board {
-    top: 20px;
-    right: 20px;
-    color: #0ff;
-}
-
-#level-board {
-    top: 20px;
-    left: 20px;
-    color: #ff0;
-}
-
-#combo-board {
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 48px;
-    color: #f0f;
-    opacity: 0.8;
-}
-
-#judgement {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 36px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 10px #fff;
-}
-
-#controls-hint {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    font-weight: bold;
-    color: #00ffff;
-    text-shadow: 0 0 8px #00ffff, 0 0 15px rgba(0, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.6);
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    white-space: nowrap;
-}
-
-/* Modal */
-.modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
+.github-badge {
+    display: inline-flex;
     align-items: center;
-    z-index: 10;
-}
-
-.modal.hidden {
-    display: none;
-}
-
-.modal-content {
-    background: #222;
-    padding: 40px;
-    border: 2px solid #555;
-    text-align: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
+    margin-top: 15px;
+    transition: all 0.3s;
+    color: #fff;
+    text-decoration: none;
 }
 
-.modal-content h2 {
-    margin-top: 0;
-    color: #ff0;
+.github-badge:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
-.modal-content button {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-}
-
-/* Result */
-.result-stats p {
-    font-size: 20px;
-    margin: 10px 0;
-}
-
-.action-buttons button {
-    margin: 0 10px;
+.about-subtitle {
+    color: #aaa;
+    font-size: 18px;
 }
