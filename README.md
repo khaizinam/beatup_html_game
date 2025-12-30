@@ -20,6 +20,17 @@ BeatUp is a web-based rhythm game where players must memorize and input arrow se
 - ⌨️ **Responsive Controls**: Smooth keyboard input handling
 - 🎨 **Modern UI**: Beautiful gradient backgrounds and glowing effects
 
+## 📸 Screenshots
+
+Here are some screenshots of the game in action:
+
+### Gameplay Screenshot 1
+![Gameplay Screenshot 1](public/image/doc-1.png)
+
+### Gameplay Screenshot 2
+![Gameplay Screenshot 2](public/image/doc-2.png)
+
+
 ## 🎮 How to Play
 
 ### Controls
