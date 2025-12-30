@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatUp - Audition Style</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- MENU SCREEN -->
+        <div id="screen-menu" class="screen active">
+            <h1>BeatUp Web</h1>
+            <div class="menu-form">
+                <div class="form-group">
+                    <label>Mode:</label>
+                    <select id="setting-mode">
+                        <option value="4K">4K Mode</option>
+                        <option value="8K">8K Mode</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Difficulty:</label>
+                    <select id="setting-diff">
+                        <option value="EASY">Easy</option>
+                        <option value="NORMAL" selected>Normal</option>
+                        <option value="HARD">Hard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Song:</label>
+                    <select id="setting-song">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="setting-auto"> Auto Play (Test Mode)
+                    </label>
+                </div>
+                <button id="btn-start" class="btn-primary">START GAME</button>
+            </div>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="screen-game" class="screen">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <div id="ui-overlay">
+                <div id="score-board">Score: <span id="score">0</span></div>
+                <div id="combo-board">Combo: <span id="combo">0</span></div>
+                <div id="level-board">Level: <span id="level">1</span></div>
+                <div id="judgement">Ready?</div>
+            </div>
+
+            <!-- PAUSE MODAL -->
+            <div id="modal-pause" class="modal hidden">
+                <div class="modal-content">
+                    <h2>PAUSED</h2>
+                    <button id="btn-resume">RESUME</button>
+                    <button id="btn-menu">BACK TO MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT SCREEN -->
+        <div id="screen-result" class="screen">
+            <h2>GAME FINISHED</h2>
+            <div class="result-stats">
+                <p>Song: <span id="res-song">Name</span></p>
+                <p>Score: <span id="res-score">0</span></p>
+                <p>Max Combo: <span id="res-combo">0</span></p>
+                <p>Rank: <span id="res-rank">F</span></p>
+            </div>
+            <div class="action-buttons">
+                <button id="btn-replay">PLAY AGAIN</button>
+                <button id="btn-home">BACK TO MENU</button>
+            </div>
+        </div>
+    </div>
+    <script src="public/js/app.js"></script>
+</body>
+
+</html>
