@@ -34,5 +34,17 @@ export const SONG_LIST = [
             { start: 80, end: 120, mode: 3, bpm: 160, label: "Fast" },
             { start: 120, end: 160, mode: 4, bpm: 190, label: "Super Fast" }
         ]
+    },
+    {
+        id: 'killing_me',
+        name: 'Killing Me - iKON',
+        file: 'public/music/killing_me.mp3',
+        duration: 193, // 3:13
+        segments: [
+            { start: 0, end: 33, mode: 1, bpm: 110, label: "Intro" },
+            { start: 33, end: 90, mode: 2, bpm: 125, label: "Verse" },
+            { start: 90, end: 150, mode: 3, bpm: 140, label: "Chorus" },
+            { start: 150, end: 193, mode: 4, bpm: 160, label: "Finale" }
+        ]
     }
 ];
