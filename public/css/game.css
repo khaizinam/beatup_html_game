@@ -70,7 +70,7 @@ canvas {
 
 /* UI Elements */
 .menu-form {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     padding: 30px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -116,6 +116,146 @@ button:hover {
 .btn-primary {
     width: 100%;
     margin-top: 10px;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #00ffff, #00ccff);
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+
+/* --- NEW MENU DESIGN --- */
+
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.selection-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+
+.selection-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #999;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: bold;
+}
+
+.selection-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.selection-btn.active {
+    /* Softer Pastel Rainbow Gradient */
+    background: linear-gradient(45deg,
+            #ff9999,
+            /* Pastel Red */
+            #ffcc99,
+            /* Pastel Orange */
+            #ffff99,
+            /* Pastel Yellow */
+            #99ff99,
+            /* Pastel Green */
+            #99ffff,
+            /* Pastel Cyan */
+            #99ccff,
+            /* Pastel Blue */
+            #cc99ff
+            /* Pastel Purple */
+        );
+    background-size: 400% 400%;
+    animation: rainbow 8s ease infinite;
+    /* Slower animation for a softer feel */
+    color: #000;
+    /* Dark text for better contrast on light colors */
+    border: none;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.song-selection-container {
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+.song-selection-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.song-selection-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.song-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.song-item:last-child {
+    border-bottom: none;
+}
+
+.song-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.song-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #00ffff;
+    padding-left: 11px;
+    /* Adjust for border */
+}
+
+.song-item.active .song-name {
+    color: #00ffff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.song-name {
+    font-weight: bold;
+    color: #ccc;
+}
+
+.song-duration {
+    font-size: 12px;
+    color: #666;
+}
+
+.active .song-duration {
+    color: #aaa;
 }
 
 /* HUD */

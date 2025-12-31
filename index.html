@@ -5,27 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeatUp - Audition Style</title>
-   
+
     <meta name="title" content="BeatUp - Audition Style">
     <meta name="description" content="BeatUp - Audition game html5.">
     <meta name="keywords" content="BeatUp, Audition Style, BeatUp Game">
     <meta name="author" content="khaizinam">
-    
+
     <meta property="og:image" content="/public/image/menu-backgroud.jpg">
     <meta property="og:title" content="BeatUp - Audition Style">
     <meta property="og:description" content="BeatUp - Audition game html5.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://beatup.khaizinam.io.vn">
-    
+
     <meta name="robots" content="index, follow">
-    
+
     <meta name="google-site-verification" content="elBHzdkF54y_C1va2cE6ayoHvh8OU3o7F5lYaZZV7q4" />
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF5JHD2J61"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-LF5JHD2J61');
@@ -42,25 +42,28 @@
             <div class="menu-form">
                 <div class="form-group">
                     <label>Mode:</label>
-                    <select id="setting-mode">
-                        <option value="4K">4K Mode</option>
-                        <option value="8K">8K Mode</option>
-                    </select>
+                    <div id="setting-mode-group" class="selection-group">
+                        <div class="selection-btn active" data-value="4K">4K</div>
+                        <div class="selection-btn" data-value="8K">8K</div>
+                    </div>
+                    <input type="hidden" id="setting-mode" value="4K">
                 </div>
                 <div class="form-group">
                     <label>Difficulty:</label>
-                    <select id="setting-diff">
-                        <option value="EASY">Easy</option>
-                        <option value="NORMAL" selected>Normal</option>
-                        <option value="HARD">Hard</option>
-                        <option value="EXPERT">Expert</option>
-                    </select>
+                    <div id="setting-diff-group" class="selection-group">
+                        <div class="selection-btn" data-value="EASY">EASY</div>
+                        <div class="selection-btn active" data-value="NORMAL">NORMAL</div>
+                        <div class="selection-btn" data-value="HARD">HARD</div>
+                        <div class="selection-btn" data-value="EXPERT">EXPERT</div>
+                    </div>
+                    <input type="hidden" id="setting-diff" value="NORMAL">
                 </div>
                 <div class="form-group">
                     <label>Song:</label>
-                    <select id="setting-song">
+                    <div id="setting-song-list" class="song-selection-container">
                         <!-- Populated by JS -->
-                    </select>
+                    </div>
+                    <input type="hidden" id="setting-song" value="">
                 </div>
                 <div class="form-group">
                     <label>

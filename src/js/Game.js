@@ -52,14 +52,51 @@ export default class BeatUpGame {
     // -- MENU LOGIC --
     initMenu() {
         // Populate Songs
-        const songSelect = document.getElementById('setting-song');
-        songSelect.innerHTML = '';
-        SONG_LIST.forEach(s => {
-            const opt = document.createElement('option');
-            opt.value = s.id;
-            opt.innerText = s.name;
-            songSelect.appendChild(opt);
+        const songListContainer = document.getElementById('setting-song-list');
+        const songInput = document.getElementById('setting-song');
+        songListContainer.innerHTML = '';
+
+        SONG_LIST.forEach((s, index) => {
+            const item = document.createElement('div');
+            item.className = 'song-item' + (index === 0 ? ' active' : '');
+            item.dataset.id = s.id;
+
+            const minutes = Math.floor(s.duration / 60);
+            const seconds = s.duration % 60;
+            const timeStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            item.innerHTML = `
+                <span class="song-name">${s.name}</span>
+                <span class="song-duration">${timeStr}</span>
+            `;
+
+            item.onclick = () => {
+                document.querySelectorAll('.song-item').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+                songInput.value = s.id;
+            };
+
+            songListContainer.appendChild(item);
+            if (index === 0) songInput.value = s.id;
         });
+
+        // Mode and Difficulty Selection
+        const setupSelectionGroup = (groupId, inputId) => {
+            const group = document.getElementById(groupId);
+            const input = document.getElementById(inputId);
+            const buttons = group.querySelectorAll('.selection-btn');
+
+            buttons.forEach(btn => {
+                btn.onclick = () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    input.value = btn.dataset.value;
+                };
+            });
+        };
+
+        setupSelectionGroup('setting-mode-group', 'setting-mode');
+        setupSelectionGroup('setting-diff-group', 'setting-diff');
 
         // Event Listeners
         document.getElementById('btn-start').onclick = () => this.startGame();
