@@ -40,6 +40,10 @@ export default class BeatUpGame {
         this.inputSystem = new InputSystem(this);
         this.uiSystem = new UISystem(this);
 
+        // Device Check
+        this.checkDevice();
+        window.addEventListener('resize', () => this.checkDevice());
+
         // Init
         this.initMenu();
         this.audioSystem.playBGM(); // Play on load
@@ -324,5 +328,18 @@ export default class BeatUpGame {
             this.score += Math.floor(pts * (1 + Math.floor(this.combo / 10)) * diffMult);
         }
         this.uiSystem.updateUI();
+    }
+
+    checkDevice() {
+        const warningModal = document.getElementById('modal-device-warning');
+        if (window.innerWidth < 850) {
+            warningModal.classList.remove('hidden');
+            // If in game, pause or force menu
+            if (this.state === 'PLAYING') {
+                this.togglePause();
+            }
+        } else {
+            warningModal.classList.add('hidden');
+        }
     }
 }
